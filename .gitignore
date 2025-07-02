@@ -1,0 +1,40 @@
+# CMake build output
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Compiled binaries and shared objects
+a.out
+*.so
+*.out
+*.pyc
+*.pyo
+*.pyd
+*.o
+*.obj
+*.dll
+*.exe
+*.dylib
+*.bin
+te
+
+# Python virtual environments
+test/env/
+
+# IDE/project files
+.vscode/
+.idea/
+test/.ropeproject/
+
+# Ignore Python cache
+__pycache__/
+
+# Do not ignore source files
+!*.cpp
+!*.hpp
+!*.h
+!*.c
+!*.py
+!CMakeLists.txt 

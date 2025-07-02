@@ -1,0 +1,13 @@
+cmake_minimum_required(VERSION 3.14)
+project(TensorBindings)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Locate pybind11
+find_package(pybind11 REQUIRED)
+
+# Your library
+add_library(tensor SHARED tensor.cpp bindings.cpp)
+target_include_directories(tensor PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_link_libraries(tensor PRIVATE pybind11::module)
