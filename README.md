@@ -1,4 +1,4 @@
-#redCedar
+# redCedar
 
 
 A Machine learning framework built from scratch, for learning purposes.
