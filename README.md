@@ -8,7 +8,7 @@ A Machine learning framework built from scratch, for learning purposes.
 In this example, it tried to fit [x,y] t0 [y^2x,x^2y]
 
 Usage:
-```
+```python
 import redCedar
 import math
 import random
