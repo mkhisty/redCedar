@@ -3,7 +3,7 @@
 
 A Machine learning framework built from scratch, for learning purposes.
 
-![image](https://github.com/user-attachments/assets/c39f3d89-ffda-4f36-90fa-f9dc97b2f04a)
+![image](https://github.com/user-attachments/assets/90e65b01-ffaa-494f-869b-e9c6282f1a6b)
 
 Its still a work in progress, suggestions would be appreciated.
 
