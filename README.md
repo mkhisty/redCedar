@@ -3,6 +3,8 @@
 
 A Machine learning framework built from scratch, for learning purposes.
 
+The backprop has a few fixes, push coming soon.
+
 ![image](https://github.com/user-attachments/assets/90e65b01-ffaa-494f-869b-e9c6282f1a6b)
 
 In this example, it tried to fit [x,y] t0 [y^2x,x^2y]
