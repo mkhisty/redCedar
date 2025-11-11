@@ -8,6 +8,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(pybind11 REQUIRED)
 
 # Your library
-add_library(tensor SHARED tensor.cpp bindings.cpp)
+add_library(tensor SHARED tensor.cpp nn.cpp bindings.cpp)
 target_include_directories(tensor PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries(tensor PRIVATE pybind11::module)

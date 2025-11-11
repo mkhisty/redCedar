@@ -49,6 +49,13 @@ public:
     Tensor backward(const Tensor& grad, float LR) override;
 };
 
+class ReLU: public BaseModule{
+  public:
+    Tensor last_diff;
+    ReLU():BaseModule(){}
+    Tensor forward(Tensor& input) override;
+    Tensor backward(const Tensor& grad, float LR) override;
+};
 
 class Model {
     std::vector<BaseModule*> modules;

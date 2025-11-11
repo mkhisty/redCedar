@@ -122,6 +122,9 @@ PYBIND11_MODULE(redCedar, m) {
     py::class_<Sigmoid, BaseModule>(m, "Sigmoid")
         .def(py::init<>());
 
+    py::class_<ReLU, BaseModule>(m, "ReLU")
+        .def(py::init<>());
+
     py::class_<Model>(m, "Model")
         .def(py::init<std::vector<BaseModule*>>())
         .def("forward", &Model::forward)

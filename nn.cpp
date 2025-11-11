@@ -21,8 +21,9 @@ Tensor Linear::forward(Tensor& input) {
 }
 
 Tensor MSELoss::forward(Tensor& input, Tensor& correct){
-    last_diff = input.add(correct * -1.0)*(2.0f/input.size());
+    last_diff = correct.add(input * -1.0);
     float loss = (last_diff^2).sum()/input.size();
+    last_diff = last_diff*(-2.0f/input.size());
     Tensor out({1}, true); 
     out[0] = loss;
     out.grad_ = true;
@@ -46,6 +47,25 @@ Tensor Linear::backward(const Tensor& grad, float LR) {
 }
 
 
+Tensor ReLU::forward(Tensor& input){
+  
+    Tensor output(input.dims(), false, "zeroes");
+    Tensor temp(input.dims(),false,"zeroes");
+    for(int i = 0; i < input.size(); i++) {
+        float x = input.data()[i];
+        if (x>0){
+          output.data()[i]=x;
+          temp.data()[i]=1;
+    
+        }
+    }
+    last_diff = temp;
+    return output;
+}
+Tensor ReLU::backward(const Tensor& grad, float LR){
+
+return grad.matmul(last_diff);
+};
 
 Tensor MSELoss::backward(const Tensor& grad, float LR) {
     return last_diff;

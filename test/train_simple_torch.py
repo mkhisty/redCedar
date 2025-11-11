@@ -8,15 +8,17 @@ import matplotlib.pyplot as plt
 class Model(nn.Module):
     def __init__(self):
         super().__init__()
-        self.layerA = nn.Linear(2, 20)
+        self.layerA = nn.Linear(2,20)
         self.sigmoidA = nn.Sigmoid()
-        self.layerB = nn.Linear(20, 30)
+        self.layerB = nn.Linear(20,20)
         self.sigmoidB = nn.Sigmoid()
-        self.layerC = nn.Linear(30, 20)
-        self.sigmoidC = nn.Sigmoid()
-        self.layerD = nn.Linear(20, 2)
-        self.sigmoidD = nn.Sigmoid()
+
+        self.layerC = nn.Linear(20,2)
+            
         self.loss_ = nn.MSELoss()
+    
+
+    
     def loss(self, x, xHat):
         return self.loss_(x, xHat)
     def forward(self, x):
@@ -25,9 +27,6 @@ class Model(nn.Module):
         x = self.layerB(x)
         x = self.sigmoidB(x)
         x = self.layerC(x)
-        x = self.sigmoidC(x)
-        x = self.layerD(x)
-        x = self.sigmoidD(x)
         return x
 
 def train_network(steps=10000):
@@ -37,17 +36,17 @@ def train_network(steps=10000):
     avg_losses = []
     lossAverage = 0
     for step in range(steps):
-        x = random.uniform(0, 2 * math.pi)
-        y = random.uniform(0, 2 * math.pi)
+        x = random.uniform(0, math.pi*2)
+        y = random.uniform(0, math.pi*2)
         input_tensor = torch.tensor([[x], [y]], dtype=torch.float32, device=device)
-        target = torch.tensor([[(math.sin(x) + 1) * 0.5], [(math.cos(y) + 1) * 0.5]], dtype=torch.float32, device=device)
+        target = torch.tensor( [[math.sin(x+y)], [math.cos(x+y)]], dtype=torch.float32, device=device)
         pred = myModel(input_tensor.T)  # shape (1,2)
         loss = myModel.loss(pred.T, target)
         lossAverage += loss.item()
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
-        if step % 1000 == 0:
+        if (step+1) % 1000 == 0:
             pred0 = float(pred[0,0])
             pred1 = float(pred[0,1])
             print(f"Step {step}: input=({x:.2f},{y:.2f}) target=({target[0,0]:.2f},{target[1,0]:.2f}) pred=({pred0:.2f},{pred1:.2f}) loss={loss.item():.4f}")
@@ -58,6 +57,7 @@ def train_network(steps=10000):
     for x_val, y_val in [(0,0), (1,1), (-1,-1), (math.pi/2, math.pi/2)]:
         input_tensor = torch.tensor([[x_val], [y_val]], dtype=torch.float32, device=device)
         target = torch.tensor([[math.sin(x_val + y_val)], [math.cos(x_val + y_val)]], dtype=torch.float32, device=device)
+
         pred = myModel(input_tensor.T)
         pred0 = float(pred[0,0])
         pred1 = float(pred[0,1])
